@@ -89,8 +89,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "3rdparty/**/*.{h,m}", "Category/**/*.{h,m}", "Class/**/*.{h,m}","Custom/**/*.{h,m}", "ChatDemoUIDefine.h""
-  #s.exclude_files = "Classes/Exclude"
+  s.source_files  = "ChatDemo-UI2.0/**/*.{h,m}"
+  s.exclude_files = "ChatDemo-UI2.0/main.m"
   s.prefix_header_file = "ChatDemo-UI2.0-Prefix.pch"
   # s.public_header_files = "Classes/**/*.h"
 
@@ -103,8 +103,8 @@ Pod::Spec.new do |s|
   #  non-essential files like tests, examples and documentation.
   #
 
-  # s.resource  = "icon.png"
-  s.resources = ["Resources/**/*.png", "Classes/**/*.png", 3rdparty/**/*.png, "Classes/**/*.xib"]
+  # s.resource  = "ChatDemo-UI2.0/**/*.png"
+  s.resources = ["ChatDemo-UI2.0/**/*.png", "ChatDemo-UI2.0/**/*.xib"]
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 

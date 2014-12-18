@@ -134,7 +134,7 @@ Pod::Spec.new do |s|
   s.dependency "MagicalRecord/Shorthand"
   s.dependency "EaseMobSDK"
   s.dependency "THProgressView"
-  s.dependency "MBProgressHUB"
+  s.dependency "MBProgressHUD"
   s.dependency "WCAlertView"
 
 end

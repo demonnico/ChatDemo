@@ -90,7 +90,7 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "ChatDemo-UI2.0/**/*.{h,m}"
-  s.exclude_files = "ChatDemo-UI2.0/main.m"
+  s.exclude_files = "ChatDemo-UI2.0/main.m", "ChatDemo-UI2.0/Class/AppDelegate.{h,m}"
   s.prefix_header_file = "ChatDemo-UI2.0/ChatDemo-UI2.0-Prefix.pch"
   # s.public_header_files = "Classes/**/*.h"
 

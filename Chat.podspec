@@ -94,7 +94,7 @@ Pod::Spec.new do |s|
   s.prefix_header_file = "ChatDemo-UI2.0/ChatDemo-UI2.0-Prefix.pch"
   # s.public_header_files = "Classes/**/*.h"
 
-  s.vendored_libraries = "ChatDemo-UI2.0/EaseMobSDK/libEaseMobClientSDKLite.a"
+  s.vendored_libraries = "ChatDemo-UI2.0/EaseMobSDK/lib/libEaseMobClientSDKLite.a"
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  A list of resources included with the Pod. These are copied into the
@@ -118,8 +118,8 @@ Pod::Spec.new do |s|
   # s.framework  = "SomeFramework"
   s.frameworks = "ImageIO", "MapKit", "CoreLocation", "SystemConfiguration","Social","Security","MobileCoreServices","AddressBook","CFNetwork"
 
-   s.library   = "ChatDemo-UI2.0/EaseMobSDK/lib/libEaseMobClientSDKLite.a"
-   s.xcconfig = { 'LIBRARY_SEARCH_PATHS' => "$(SRCROOT)/Pods/**" }
+#  s.library   = "ChatDemo-UI2.0/EaseMobSDK/lib/libEaseMobClientSDKLite.a"
+#   s.xcconfig = { 'LIBRARY_SEARCH_PATHS' => "$(SRCROOT)/Pods/**" }
 #  s.libraries = "libresolv", "libstdc++", "libiconv", "libz", "libxml2"
 
 

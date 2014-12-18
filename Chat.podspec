@@ -132,7 +132,7 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   s.dependency 'MagicalRecord/Shorthand'
-  s.dependency 'Easemob', '~>2.1.4'
+#  s.dependency 'Easemob', '~>2.1.4'
   s.dependency 'THProgressView'
   s.dependency 'MBProgressHUD'
   s.dependency 'WCAlertView'

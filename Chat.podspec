@@ -118,7 +118,8 @@ Pod::Spec.new do |s|
   # s.framework  = "SomeFramework"
   s.frameworks = "ImageIO", "MapKit", "CoreLocation", "SystemConfiguration","Social","Security","MobileCoreServices","AddressBook","CFNetwork"
    s.xcconfig = { 'OTHER_LDFLAGS' => '-lObjC' }
-#  s.library   = "ChatDemo-UI2.0/EaseMobSDK/lib/libEaseMobClientSDKLite.a"
+   s.libraries = 'xml2', 'resolv', 'stdc++', 'iconv', 'z'
+#   s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
 #   s.xcconfig = { 'LIBRARY_SEARCH_PATHS' => "$(SRCROOT)/Pods/**" }
 #  s.libraries = "libz", "libxml2"
 

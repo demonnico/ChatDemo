@@ -1,0 +1,8 @@
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#endif
+
+#import "Pods-environment.h"
+#define MR_SHORTHAND 0
+#import <CoreData/CoreData.h>
+#import "CoreData+MagicalRecord.h"

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A3CEEB58-4CD8-4547-BFD5-C1704BCAB301</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ChatDemo-UI2.0</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AE518DC8BDBD2412E1EBBDA5D930C2F19BCB0709</key>
+		<string>https://github.com/jervisliu/emclient-ios.git</string>
+		<key>F21567B5D9E6B9CF33213263FCBF251B3F8526AC</key>
+		<string>https://github.com/easemob/sdkexamples-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ChatDemo-UI2.0/ChatDemo-UI2.0.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AE518DC8BDBD2412E1EBBDA5D930C2F19BCB0709</key>
+		<string>../../../../emclient-ios</string>
+		<key>F21567B5D9E6B9CF33213263FCBF251B3F8526AC</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/easemob/sdkexamples-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F21567B5D9E6B9CF33213263FCBF251B3F8526AC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AE518DC8BDBD2412E1EBBDA5D930C2F19BCB0709</string>
+			<key>IDESourceControlWCCName</key>
+			<string>emclient-ios</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F21567B5D9E6B9CF33213263FCBF251B3F8526AC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>sdkexamples-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>

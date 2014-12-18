@@ -118,7 +118,8 @@ Pod::Spec.new do |s|
   # s.framework  = "SomeFramework"
   s.frameworks = "ImageIO", "MapKit", "CoreLocation", "SystemConfiguration","Social","Security","MobileCoreServices","AddressBook","CFNetwork"
 
-  # s.library   = "iconv"
+   s.library   = "ChatDemo-UI2.0/EaseMobSDK/lib/libEaseMobClientSDKLite.a"
+   s.xcconfig = { 'LIBRARY_SEARCH_PATHS' => "$(SRCROOT)/Pods/**" }
 #  s.libraries = "libresolv", "libstdc++", "libiconv", "libz", "libxml2"
 
 

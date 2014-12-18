@@ -131,6 +131,10 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+  s.dependency "MagicalRecord/Shorthand"
+  s.dependency "EaseMobSDK"
+  s.dependency "THProgressView"
+  s.dependency "MBProgressView",
+  s.dependency "WCAlertView"
 
 end

@@ -94,7 +94,7 @@ Pod::Spec.new do |s|
   s.prefix_header_file = "ChatDemo-UI2.0/ChatDemo-UI2.0-Prefix.pch"
   # s.public_header_files = "Classes/**/*.h"
 
-
+  s.vendored_libraries = "ChatDemo-UI2.0/EaseMobSDK/libEaseMobClientSDKLite.a"
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  A list of resources included with the Pod. These are copied into the

@@ -119,7 +119,7 @@ Pod::Spec.new do |s|
   s.frameworks = "ImageIO", "MapKit", "CoreLocation", "SystemConfiguration","Social","Security","MobileCoreServices","AddressBook","CFNetwork"
 
   # s.library   = "iconv"
-  s.libraries = "libresolv", "libstdc++", "libiconv", "libz", "libxml2"
+#  s.libraries = "libresolv", "libstdc++", "libiconv", "libz", "libxml2"
 
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

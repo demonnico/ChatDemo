@@ -65,7 +65,7 @@
     self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     self.tableView.tableHeaderView = self.searchBar;
     
-    self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    self.tableView.frame = self.view.frame;
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
     

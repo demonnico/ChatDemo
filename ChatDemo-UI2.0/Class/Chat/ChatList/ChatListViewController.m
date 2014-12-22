@@ -47,13 +47,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self searchController];
     
-    self.tableView.tableHeaderView = self.slimeView;
+    self.tableView.tableHeaderView = self.searchBar;
     [self.view addSubview:self.tableView];
+    self.tableView.frame = self.view.frame;
     [self.tableView addSubview:self.slimeView];
     [self networkStateView];
     
-    [self searchController];
 }
 
 - (void)didReceiveMemoryWarning

@@ -58,9 +58,9 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     [self registerNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUntreatedApplyCount) name:@"setupUntreatedApplyCount" object:nil];
     
-    [self setupSubviews];
-    self.selectedIndex = 0;
-    
+//    [self setupSubviews];
+//    self.selectedIndex = 0;
+        
     UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [addButton setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
     [addButton addTarget:_contactsVC action:@selector(addFriendAction) forControlEvents:UIControlEventTouchUpInside];
@@ -130,42 +130,6 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
 }
 
-- (void)setupSubviews
-{
-    self.tabBar.backgroundImage = [[UIImage imageNamed:@"tabbarBackground"] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-    self.tabBar.selectionIndicatorImage = [[UIImage imageNamed:@"tabbarSelectBg"] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-    
-    _chatListVC = [[ChatListViewController alloc] init];
-    _chatListVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"会话"
-                                                           image:nil
-                                                             tag:0];
-    [_chatListVC.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_chatsHL"]
-                         withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_chats"]];
-    [self unSelectedTapTabBarItems:_chatListVC.tabBarItem];
-    [self selectedTapTabBarItems:_chatListVC.tabBarItem];
-    
-    _contactsVC = [[ContactsViewController alloc] initWithNibName:nil bundle:nil];
-    _contactsVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"通讯录"
-                                                           image:nil
-                                                             tag:1];
-    [_contactsVC.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_contactsHL"]
-                         withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_contacts"]];
-    [self unSelectedTapTabBarItems:_contactsVC.tabBarItem];
-    [self selectedTapTabBarItems:_contactsVC.tabBarItem];
-    
-    _settingsVC = [[SettingsViewController alloc] init];
-    _settingsVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"设置"
-                                                           image:nil
-                                                             tag:2];
-    [_settingsVC.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_settingHL"]
-                         withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_setting"]];
-    _settingsVC.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    [self unSelectedTapTabBarItems:_settingsVC.tabBarItem];
-    [self selectedTapTabBarItems:_settingsVC.tabBarItem];
-    
-    self.viewControllers = @[_chatListVC, _contactsVC, _settingsVC];
-    [self selectedTapTabBarItems:_chatListVC.tabBarItem];
-}
 
 -(void)unSelectedTapTabBarItems:(UITabBarItem *)tabBarItem
 {
@@ -567,7 +531,6 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     if(_chatListVC)
     {
         [self.navigationController popToViewController:self animated:NO];
-        [self setSelectedViewController:_chatListVC];
     }
 }
 

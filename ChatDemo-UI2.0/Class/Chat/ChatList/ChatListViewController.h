@@ -18,6 +18,6 @@
 - (void)refreshDataSource;
 
 - (void)isConnect:(BOOL)isConnect;
-- (void)networkChanged:(EMConnectionState)connectionState;
+- (void)networkChanged:(int)connectionState;
 
 @end

@@ -39,6 +39,7 @@
 {
     [super viewDidLoad];
     [self setupForDismissKeyboard];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     _usernameTextField.delegate = self;
 }
 

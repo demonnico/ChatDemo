@@ -57,13 +57,15 @@
 
 - (void)viewDidLoad
 {
+    self.view.backgroundColor = [UIColor whiteColor];
     [super viewDidLoad];
     
     [self searchController];
+
     self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
-    [self.view addSubview:self.searchBar];
+    self.tableView.tableHeaderView = self.searchBar;
     
-    self.tableView.frame = CGRectMake(0, self.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchBar.frame.size.height);
+    self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
     
@@ -386,14 +388,6 @@
 }
 
 #pragma mark - UISearchBarDelegate
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
-    [searchBar setShowsCancelButton:YES animated:YES];
-    
-    return YES;
-}
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.contactsSource searchText:(NSString *)searchText collationStringSelector:@selector(username) resultBlock:^(NSArray *results) {
@@ -407,9 +401,15 @@
     }];
 }
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    return YES;
+//    [self.searchController setActive:YES
+//                            animated:YES];
+}
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+//    [self.searchController setActive:NO
+//                            animated:YES];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -422,7 +422,6 @@
     searchBar.text = @"";
     [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
     [searchBar resignFirstResponder];
-    [searchBar setShowsCancelButton:NO animated:YES];
 }
 
 #pragma mark - UIActionSheetDelegate

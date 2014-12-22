@@ -181,6 +181,11 @@
     return YES;
 }
 
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self searchAction];
+}
+
 #pragma mark - action
 
 - (void)searchAction

@@ -48,7 +48,7 @@
 {
     [super viewDidLoad];
     
-    [self.view addSubview:self.searchBar];
+    self.tableView.tableHeaderView = self.slimeView;
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
     [self networkStateView];

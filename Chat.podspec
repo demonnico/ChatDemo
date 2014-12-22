@@ -104,7 +104,7 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "ChatDemo-UI2.0/**/*.png"
-  s.resources = ["ChatDemo-UI2.0/**/*.png", "ChatDemo-UI2.0/**/*.xib","ChatDemo-UI2.0/**/*.bundle"]
+s.resources = ["ChatDemo-UI2.0/**/*.png", "ChatDemo-UI2.0/**/*.xib","ChatDemo-UI2.0/**/*.bundle","ChatDemo-UI2.0/**/*.xcdatamodeld"]
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 

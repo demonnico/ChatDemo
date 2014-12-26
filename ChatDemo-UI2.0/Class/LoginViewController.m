@@ -103,6 +103,7 @@
          [self hideHud];
          if (loginInfo && !error) {
              [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+             [[[EaseMob sharedInstance] chatManager] setIsAutoLoginEnabled:YES];
          }else {
              switch (error.errorCode) {
                  case EMErrorServerNotReachable:

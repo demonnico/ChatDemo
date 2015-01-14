@@ -12,7 +12,8 @@
 
 #import "LoginViewController.h"
 #import "EMError.h"
-
+#import "ChatDemoUIDefine.h"
+#import "UIAlertView+BlocksKit.h"
 @interface LoginViewController ()<IChatManagerDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
@@ -25,6 +26,22 @@
 @end
 
 @implementation LoginViewController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(doLogin:)
+                                                     name:kNotiPostLoginWithInfo
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(doRegister:)
+                                                     name:kNotiPostRegisterWithInfo
+                                                   object:nil];
+    }
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,9 +67,26 @@
 }
 
 - (IBAction)doRegister:(id)sender {
-    if (![self isEmpty]) {
+    if([sender isKindOfClass:[UIButton class]]){
+        [self registerWithUserName:self.usernameTextField.text
+                          password:self.passwordTextField.text];
+    }else{
+        NSNotification * noti = sender;
+        NSString * username = noti.userInfo[@"username"];
+        NSString * password = noti.userInfo[@"password"];
+        [self registerWithUserName:username
+                          password:password];
+    }
+}
+
+
+-(void)registerWithUserName:(NSString*)userName
+                   password:(NSString*)password
+{
+    if (![self isEmptyWithUsername:userName
+                          password:password]) {
         [self.view endEditing:YES];
-        if ([self.usernameTextField.text isChinese]) {
+        if ([userName isChinese]) {
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"用户名不支持中文"
                                   message:nil
@@ -65,8 +99,8 @@
             return;
         }
         [self showHudInView:self.view hint:@"正在注册..."];
-        [[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:_usernameTextField.text
-                                                             password:_passwordTextField.text
+        [[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:userName
+                                                             password:password
                                                        withCompletion:
          ^(NSString *username, NSString *password, EMError *error) {
              [self hideHud];
@@ -91,6 +125,7 @@
              }
          } onQueue:nil];
     }
+
 }
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password
@@ -136,9 +171,24 @@
 }
 
 - (IBAction)doLogin:(id)sender {
-    if (![self isEmpty]) {
+    if([sender isKindOfClass:[UIButton class]]){
+        [self loginTappedWithUsername:self.usernameTextField.text
+                             password:self.passwordTextField.text];
+    }else{
+        NSNotification * noti = sender;
+        NSString * username = noti.userInfo[@"username"];
+        NSString * password = noti.userInfo[@"password"];
+        [self loginTappedWithUsername:username
+                             password:password];
+    }
+}
+
+-(void)loginTappedWithUsername:(NSString*)username password:(NSString *)password
+{
+    if (![self isEmptyWithUsername:username
+                          password:password]) {
         [self.view endEditing:YES];
-        if ([self.usernameTextField.text isChinese]) {
+        if ([username isChinese]) {
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"用户名不支持中文"
                                   message:nil
@@ -151,22 +201,24 @@
             return;
         }
 #if !TARGET_IPHONE_SIMULATOR
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"填写推送消息时使用的昵称" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-        UITextField *nameTextField = [alert textFieldAtIndex:0];
-        nameTextField.text = self.usernameTextField.text;
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"填写推送消息时使用的昵称" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//        [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+//        UITextField *nameTextField = [alert textFieldAtIndex:0];
+//        nameTextField.text = username;
+//        [alert show];
+        //TODO:这里设置昵称
+//        [[EaseMob sharedInstance].chatManager setNickname:nameTextField.text];
+        [self loginWithUsername:username
+                       password:password];
 #elif TARGET_IPHONE_SIMULATOR
-        [self loginWithUsername:_usernameTextField.text password:_passwordTextField.text];
+        [self loginWithUsername:username password:password];
 #endif
     }
 }
 
-
-- (BOOL)isEmpty{
+- (BOOL)isEmptyWithUsername:(NSString*)username
+                   password:(NSString*)password{
     BOOL ret = NO;
-    NSString *username = _usernameTextField.text;
-    NSString *password = _passwordTextField.text;
     if (username.length == 0 || password.length == 0) {
         ret = YES;
         [WCAlertView showAlertWithTitle:@"提示"

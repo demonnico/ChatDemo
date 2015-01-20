@@ -22,7 +22,7 @@
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate>
 
-@property (strong, nonatomic) NSMutableArray        *dataSource;
+@property (strong, nonatomic,readwrite) NSMutableArray        *dataSource;
 
 @property (strong, nonatomic) UITableView           *tableView;
 @property (nonatomic, strong) EMSearchBar           *searchBar;

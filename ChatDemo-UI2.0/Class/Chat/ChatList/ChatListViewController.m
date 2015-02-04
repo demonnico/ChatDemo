@@ -320,7 +320,15 @@
     }else{
         cell.contentView.backgroundColor = [UIColor whiteColor];
     }
+    [self fetchUserInfoWithChatId:conversation.chatter
+                      displayCell:cell];
     return cell;
+}
+
+- (void)fetchUserInfoWithChatId:(NSString*)chatId
+                    displayCell:(ChatListCell*)chatListCell
+{
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

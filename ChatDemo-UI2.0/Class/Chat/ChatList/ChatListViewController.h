@@ -12,12 +12,13 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-
+@class ChatListCell;
 @interface ChatListViewController : BaseViewController
 @property (strong, nonatomic,readonly) NSMutableArray        *dataSource;
 - (void)refreshDataSource;
 
 - (void)isConnect:(BOOL)isConnect;
 - (void)networkChanged:(int)connectionState;
-
+- (void)fetchUserInfoWithChatId:(NSString*)chatId
+                    displayCell:(ChatListCell*)chatListCell;
 @end

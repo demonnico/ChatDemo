@@ -33,6 +33,7 @@
         _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 7, 80, 16)];
         _timeLabel.font = [UIFont systemFontOfSize:13];
         _timeLabel.backgroundColor = [UIColor clearColor];
+        _timeLabel.textAlignment = NSTextAlignmentRight;
         [self.contentView addSubview:_timeLabel];
         
         _unreadLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 0, 20, 20)];
@@ -107,8 +108,13 @@
         [_unreadLabel setHidden:YES];
     }
     
+    frame = _timeLabel.frame;
+    frame.origin.x = self.contentView.frame.size.width-20-frame.size.width;
+    _timeLabel.frame = frame;
+    
     frame = _lineView.frame;
     frame.origin.y = self.contentView.frame.size.height - 1;
+    frame.size.width = self.contentView.frame.size.width;
     _lineView.frame = frame;
 }
 

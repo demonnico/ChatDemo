@@ -16,7 +16,7 @@
 @interface ChatListViewController : BaseViewController
 @property (strong, nonatomic,readonly) NSMutableArray        *dataSource;
 - (void)refreshDataSource;
-
+-(void)hideSearchWidgets;
 - (void)isConnect:(BOOL)isConnect;
 - (void)networkChanged:(int)connectionState;
 - (void)fetchUserInfoWithChatId:(NSString*)chatId

@@ -51,19 +51,6 @@
 
 /*!
  @method
- @brief 收到了已自动加入某个群组的通知（你收到通知时已是该群成员）
- @param groupId  群组ID
- @param username 邀请人名称
- @param message  邀请信息
- @discussion
-        主要发生 1、于创建群组时，被选为默认成员；2、isAutoAcceptGroupInvitation为YES
- */
-- (void)didAutoAcceptedGroupInvitationFrom:(NSString *)groupId
-                                   inviter:(NSString *)username
-                                   message:(NSString *)message;
-
-/*!
- @method
  @brief 收到了其它群组的加入邀请
  @param groupId  群组ID
  @param username 邀请人名称
@@ -73,6 +60,28 @@
 - (void)didReceiveGroupInvitationFrom:(NSString *)groupId
                               inviter:(NSString *)username
                               message:(NSString *)message EM_DEPRECATED_IOS(2_0_0, 2_0_6, "Use -didAutoAcceptedGroupInvitationFrom:inviter:message:");
+
+/*!
+ @method
+ @brief 收到了已自动加入某个群组的通知（你收到通知时已是该群成员）
+ @param groupId  群组ID
+ @param username 邀请人名称
+ @param message  邀请信息
+ @discussion
+        主要发生 1、于创建群组时，被选为默认成员；2、isAutoAcceptGroupInvitation为YES
+ */
+- (void)didAutoAcceptedGroupInvitationFrom:(NSString *)groupId
+                                   inviter:(NSString *)username
+                                   message:(NSString *)message EM_DEPRECATED_IOS(2_0_6, 2_1_1, "didAcceptInvitationFromGroup:error:");
+
+/*!
+ @method
+ @brief 接受群组邀请并加入群组后的回调
+ @param group 所接受的群组
+ @param error 错误信息
+ */
+- (void)didAcceptInvitationFromGroup:(EMGroup *)group
+                               error:(EMError *)error;
 
 /*!
  @method
@@ -87,15 +96,6 @@
                               inviter:(NSString *)username
                               message:(NSString *)message
                                 error:(EMError *)error;
-
-/*!
- @method
- @brief 接受群组邀请后的回调
- @param group 所接受的群组
- @param error 错误信息
- */
-- (void)didAcceptInvitationFromGroup:(EMGroup *)group
-                               error:(EMError *)error;
 
 /*!
  @method
@@ -199,6 +199,15 @@
 
 /*!
  @method
+ @brief 同意入群申请后，同意者收到的回调
+ @param groupId         申请加入的群组的ID
+ @param username        申请加入的人的username
+ @param error           错误信息
+ */
+- (void)didAcceptApplyJoinGroup:(NSString *)groupId username:(NSString *)username error:(EMError *)error;
+
+/*!
+ @method
  @brief 群组列表变化后的回调
  @param groupList 新的群组列表
  @param error     错误信息
@@ -261,5 +270,17 @@
  */
 - (void)didApplyJoinPublicGroup:(EMGroup *)group
                           error:(EMError *)error;
+
+#pragma mark - Anonymous Group nickname
+
+/*!
+ @method
+ @brief 删除App后, 重新join匿名群时, 获取不到 nickname, 需要app主动提供一个nickname, 如果未主动提供或返回nil, SDK会随机生成一个nickname(字母+数字)
+ @param account 当前登录的用户
+ @param groupId 用户所在的(匿名)群组id
+ @result 用户在该群组中的昵称
+ */
+- (NSString *)nicknameForAccount:(NSString *)account
+                         inGroup:(NSString *)groupId;
 
 @end

@@ -125,6 +125,13 @@
     return _tableView;
 }
 
+-(void)hideSearchWidgets
+{
+    self.searchBar = nil;
+    self.tableView.tableHeaderView = nil;
+    self.searchController = nil;
+}
+
 - (EMSearchDisplayController *)searchController
 {
     if (_searchController == nil) {

@@ -63,6 +63,7 @@
 @property (nonatomic) BOOL isScrollToBottom;
 @property (nonatomic) BOOL isPlayingAudio;
 
+@property (nonatomic,assign) BOOL dataLoading;
 @end
 
 @implementation ChatViewController
@@ -932,16 +933,53 @@
         }
         
         NSArray *chats = [weakSelf.conversation loadNumbersOfMessages:(currentCount + KPageCount) before:beforeTime];
-        
+        if ((chats.count-currentCount)<KPageCount) {
+            //加载条数少于20条，则下一次加载没有更多数据
+            UIActivityIndicatorView * indictorView =
+            (UIActivityIndicatorView*)self.tableView.tableHeaderView;
+            [indictorView stopAnimating];
+            self.tableView.tableHeaderView = nil;
+        }
         if ([chats count] > currentCount) {
             weakSelf.dataSource.array = [weakSelf sortChatSource:chats];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.tableView reloadData];
                 
-                [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.dataSource count] - currentCount - 1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+                if (currentCount==0) {
+                    if (weakSelf.dataSource.count<10) {
+                        //滚动到顶部
+                        [weakSelf.tableView setContentOffset:CGPointZero];
+                    }else{
+                        //滚动到最底下
+                        [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:weakSelf.dataSource.count-1
+                                                                                       inSection:0]
+                                                  atScrollPosition:UITableViewScrollPositionBottom
+                                                          animated:NO];
+                    }
+                }else{
+                    NSIndexPath * indexPath =
+                    [NSIndexPath indexPathForRow:[weakSelf.dataSource count] - currentCount inSection:0];
+                    [weakSelf.tableView scrollToRowAtIndexPath:indexPath
+                                              atScrollPosition:UITableViewScrollPositionTop
+                                                      animated:NO];
+                }
+                self.dataLoading = NO;
             });
         }
     });
+}
+
+
+#pragma mark - UIScrollView delegate method
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (self.tableView.tableHeaderView&&scrollView.contentOffset.y==0&&!self.dataLoading) {
+        self.dataLoading = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self loadMoreMessages];
+        });
+    }
 }
 
 - (NSArray *)sortChatSource:(NSArray *)array

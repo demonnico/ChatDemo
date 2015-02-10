@@ -259,10 +259,6 @@
         _tableView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
         _tableView.tableFooterView = [[UIView alloc] init];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
-        UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-        lpgr.minimumPressDuration = .5;
-        [_tableView addGestureRecognizer:lpgr];
         UIActivityIndicatorView * activityView =
         [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         [activityView startAnimating];

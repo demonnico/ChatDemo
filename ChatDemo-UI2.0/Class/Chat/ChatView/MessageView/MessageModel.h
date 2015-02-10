@@ -11,7 +11,9 @@
   */
 
 #import <Foundation/Foundation.h>
-
+#import <EMChatServiceDefs.h>
+#import <EMChatVoice.h>
+#import <IEMMessageBody.h>
 #define KFIRETIME 20
 
 @interface MessageModel : NSObject

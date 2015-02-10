@@ -263,6 +263,10 @@
         UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
         lpgr.minimumPressDuration = .5;
         [_tableView addGestureRecognizer:lpgr];
+        UIActivityIndicatorView * activityView =
+        [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        [activityView startAnimating];
+        _tableView.tableHeaderView = activityView;
     }
     
     return _tableView;

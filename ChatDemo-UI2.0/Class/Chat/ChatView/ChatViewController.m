@@ -15,7 +15,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-#import "SRRefreshView.h"
 #import "DXChatBarMoreView.h"
 #import "DXRecordView.h"
 #import "DXFaceView.h"
@@ -34,7 +33,7 @@
 
 #define KPageCount 20
 
-@interface ChatViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, SRRefreshDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, IDeviceManagerDelegate>
+@interface ChatViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, IDeviceManagerDelegate>
 {
     UIMenuController *_menuController;
     UIMenuItem *_copyMenuItem;
@@ -52,7 +51,6 @@
 @property (strong, nonatomic) NSString *chatter;
 
 @property (strong, nonatomic) NSMutableArray *dataSource;//tableView数据源
-@property (strong, nonatomic) SRRefreshView *slimeView;
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) DXMessageToolBar *chatToolBar;
 
@@ -88,7 +86,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor lightGrayColor];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout =  UIRectEdgeNone;
     }
@@ -108,7 +105,6 @@
     
     [self setupBarButtonItem];
     [self.view addSubview:self.tableView];
-    [self.tableView addSubview:self.slimeView];
     [self.view addSubview:self.chatToolBar];
     
     //将self注册为chatToolBar的moreView的代理
@@ -154,9 +150,7 @@
     
     if (_isScrollToBottom) {
         [self scrollViewToBottom:YES];
-    }
-    else{
-        _isScrollToBottom = YES;
+        _isScrollToBottom = NO;
     }
 }
 
@@ -174,12 +168,10 @@
     _tableView.dataSource = nil;
     _tableView = nil;
     
-    _slimeView.delegate = nil;
-    _slimeView = nil;
-    
     _chatToolBar.delegate = nil;
     _chatToolBar = nil;
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[EaseMob sharedInstance].chatManager stopPlayingAudio];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -254,23 +246,6 @@
     }
     
     return _dataSource;
-}
-
-- (SRRefreshView *)slimeView
-{
-    if (_slimeView == nil) {
-        _slimeView = [[SRRefreshView alloc] init];
-        _slimeView.delegate = self;
-        _slimeView.upInset = 0;
-        _slimeView.slimeMissWhenGoingBack = YES;
-        _slimeView.slime.bodyColor = [UIColor grayColor];
-        _slimeView.slime.skinColor = [UIColor grayColor];
-        _slimeView.slime.lineWith = 1;
-        _slimeView.slime.shadowBlur = 4;
-        _slimeView.slime.shadowColor = [UIColor grayColor];
-    }
-    
-    return _slimeView;
 }
 
 - (UITableView *)tableView
@@ -393,30 +368,6 @@
     else{
         return [EMChatViewCell tableView:tableView heightForRowAtIndexPath:indexPath withObject:(MessageModel *)obj];
     }
-}
-
-#pragma mark - scrollView delegate
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (_slimeView) {
-        [_slimeView scrollViewDidScroll];
-    }
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (_slimeView) {
-        [_slimeView scrollViewDidEndDraging];
-    }
-}
-
-#pragma mark - slimeRefresh delegate
-//加载更多
-- (void)slimeRefreshStartRefresh:(SRRefreshView *)refreshView
-{
-    [self loadMoreMessages];
-    [_slimeView endRefresh];
 }
 
 #pragma mark - GestureRecognizer

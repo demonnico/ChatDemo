@@ -24,7 +24,7 @@
 
 @property (strong, nonatomic,readwrite) NSMutableArray        *dataSource;
 
-@property (strong, nonatomic) UITableView           *tableView;
+@property (strong, nonatomic,readwrite) UITableView           *tableView;
 @property (nonatomic, strong) EMSearchBar           *searchBar;
 @property (nonatomic, strong) SRRefreshView         *slimeView;
 @property (nonatomic, strong) UIView                *networkStateView;

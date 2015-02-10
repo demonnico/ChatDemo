@@ -13,7 +13,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ChatViewController : UIViewController
-
+<UITableViewDataSource, UITableViewDelegate>
 - (instancetype)initWithChatter:(NSString *)chatter isGroup:(BOOL)isGroup;
 
 @end

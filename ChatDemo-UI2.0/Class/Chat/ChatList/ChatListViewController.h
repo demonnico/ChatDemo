@@ -15,6 +15,7 @@
 @class ChatListCell;
 @interface ChatListViewController : BaseViewController
 @property (strong, nonatomic,readonly) NSMutableArray        *dataSource;
+@property (strong, nonatomic,readonly) UITableView           *tableView;
 - (void)refreshDataSource;
 -(void)hideSearchWidgets;
 - (void)isConnect:(BOOL)isConnect;

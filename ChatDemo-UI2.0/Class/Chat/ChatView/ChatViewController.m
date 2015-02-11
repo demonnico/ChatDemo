@@ -294,6 +294,11 @@
     return _imagePicker;
 }
 
+-(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
 - (MessageReadManager *)messageReadManager
 {
     if (_messageReadManager == nil) {

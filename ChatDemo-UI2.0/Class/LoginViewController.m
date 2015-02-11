@@ -129,7 +129,7 @@
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password
 {
-    [self showHudInView:self.view hint:@"正在登录..."];
+//    [self showHudInView:self.view hint:@"正在登录..."];
     [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username
                                                         password:password
                                                       completion:

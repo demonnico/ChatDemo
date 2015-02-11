@@ -982,6 +982,11 @@
     }
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
+}
+
 - (NSArray *)sortChatSource:(NSArray *)array
 {
     NSMutableArray *resultArray = [[NSMutableArray alloc] init];

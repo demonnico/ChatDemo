@@ -13,7 +13,6 @@
 #import "LoginViewController.h"
 #import "EMError.h"
 #import "ChatDemoUIDefine.h"
-#import "UIAlertView+BlocksKit.h"
 @interface LoginViewController ()<IChatManagerDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
